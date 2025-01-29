@@ -8,9 +8,9 @@ import com.learnkafkastreams.domain.Greeting;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static com.learnkafkastreams.producer.ProducerUtil.publishMessageSync;
+import static java.util.List.of;
 
 @Slf4j
 public class GreetingMockDataProducer {
@@ -27,8 +27,8 @@ public class GreetingMockDataProducer {
 
     }
 
-    private static void spanishGreetings(ObjectMapper objectMapper) {
-        var spanishGreetings = List.of(
+    private static void englishGreetings(ObjectMapper objectMapper) {
+        var spanishGreetings = of(
                 new Greeting("Hello, Good Morning!", LocalDateTime.now()),
                 new Greeting("Hello, Good Evening!", LocalDateTime.now()),
                 new Greeting("Hello, Good Night!", LocalDateTime.now())
@@ -45,8 +45,8 @@ public class GreetingMockDataProducer {
                 });
     }
 
-    private static void englishGreetings(ObjectMapper objectMapper) {
-        var spanishGreetings = List.of(
+    private static void spanishGreetings(ObjectMapper objectMapper) {
+        var spanishGreetings = of(
                 new Greeting("¡Hola buenos dias!", LocalDateTime.now()),
                 new Greeting("¡Hola buenas tardes!", LocalDateTime.now()),
                 new Greeting("¡Hola, buenas noches!", LocalDateTime.now())

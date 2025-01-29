@@ -11,4 +11,13 @@ public class SerdesFactory {
 
     }
 
+    public static Serde<Greeting> genericGreetingSerdes() {
+        JsonDeserializer<Greeting> jsonDeserializer = new JsonDeserializer<>(Greeting.class);
+        JsonSerializer<Greeting> jsonSerializer = new JsonSerializer<>();
+
+        return Serdes.serdeFrom(jsonSerializer, jsonDeserializer);
+
+    }
+
+
 }
