@@ -16,10 +16,18 @@ public class ExploreKTableTopology {
         StreamsBuilder streamsBuilder = new StreamsBuilder();
 
         var wordsTable = streamsBuilder
-                .table(WORDS, Consumed.with(Serdes.String(), Serdes.String()), Materialized.as("words-store"));
+                .table(WORDS, Consumed.with(Serdes.String(), Serdes.String()), Materialized.as("words-table"));
+
+
+        var wordsGlobalTable = streamsBuilder
+                .globalTable(WORDS, Consumed.with(Serdes.String(), Serdes.String()), Materialized.as("words-table"));
+
 
         wordsTable.filter((key, value) -> value.length() > 2)
-                .toStream().print(Printed.<String, String>toSysOut().withLabel("words-ktable"));
+                .mapValues((key, value) -> value.toUpperCase())
+                .toStream()
+                .print(Printed.<String, String>toSysOut().withLabel("words-ktable"));
+
 
         return streamsBuilder.build();
     }

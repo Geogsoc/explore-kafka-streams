@@ -10,6 +10,9 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Printed;
 import org.apache.kafka.streams.kstream.Produced;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class GreetingsTopology {
 
     public static String GREETINGS = "greetings";
@@ -73,6 +76,7 @@ public class GreetingsTopology {
         var mergedStream = greetingsStream.merge(greetingsSpanishStream);
         return mergedStream;
     }
+
 
 
 }
